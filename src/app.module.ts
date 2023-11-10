@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
-import { PrismaModule } from './services/prismaService/prisma.module';
 import { UsersModule } from './users/users.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -16,5 +16,4 @@ import { UsersModule } from './users/users.module';
     UsersModule,
   ],
 })
-// eslint-disable-next-line prettier/prettier
-export class AppModule { }
+export class AppModule {}

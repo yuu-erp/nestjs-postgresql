@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/services/prismaService/prisma.service';
+import { CreateUserDto } from './dto/create-dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UsersService {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private readonly prismaService: PrismaService) { }
-  findAll() {
-    return 'Xin chào mình tên là Lê Khải Hoàn';
+  constructor(private readonly prismaService: PrismaService) {}
+  create(createUserDto: CreateUserDto) {
+    console.log('createUserDto', createUserDto);
+    return this.prismaService.user.create({ data: createUserDto });
   }
 }

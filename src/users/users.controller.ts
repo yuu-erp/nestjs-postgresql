@@ -1,5 +1,6 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateUserDto } from './dto/create-dto';
 import { UsersService } from './users.service';
 
 @ApiBearerAuth()
@@ -8,14 +9,11 @@ import { UsersService } from './users.service';
   path: 'users',
   version: '1',
 })
-// eslint-disable-next-line prettier/prettier
 export class UsersController {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private readonly usersService: UsersService) { }
-
-  @Get()
+  constructor(private readonly usersService: UsersService) {}
+  @Post()
   @HttpCode(HttpStatus.OK)
-  findAll() {
-    return this.usersService.findAll();
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 }
